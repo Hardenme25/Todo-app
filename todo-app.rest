@@ -1,0 +1,2 @@
+## Emulate the get request for the root directory to load the frontend
+GET http://localhost:3002
