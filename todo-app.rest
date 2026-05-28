@@ -1,2 +1,22 @@
-## Emulate the get request for the root directory to load the frontend
+### Emulate the get request for the root directory to load the frontend
 GET http://localhost:3002
+
+
+### Emulate the post request to register a user
+POST http://localhost:3002/auth/register
+Content-Type: application/json
+
+{
+    "username": "testuser4",
+    "password": "testpassword"
+}
+
+### Emulate the post request to login a user
+
+POST http://localhost:3002/auth/login
+Content-Type: application/json
+
+{
+    "username": "testuser3",
+    "password": "testpassword"
+}
