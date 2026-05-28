@@ -6,7 +6,7 @@ const db = new DatabaseSync("todo.db");
 
 // Create a table for the users in the database
 db.exec(`
-    CREATE TABLE users (
+    CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE,
         password TEXT
@@ -15,10 +15,10 @@ db.exec(`
 
 // Create a table for the todos in the database
 db.exec(`
-    CREATE TABLE todos (
+    CREATE TABLE IF NOT EXISTS todos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER,
-        task TEXT,
+        task TEXT NOT NULL,
         completed BOOLEAN DEFAULT 0,
         FOREIGN KEY (user_id) REFERENCES users(id)
     );
