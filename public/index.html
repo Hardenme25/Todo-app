@@ -201,6 +201,7 @@
                 const response = await fetch(apiBase + 'auth/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
+                    // Here we are sending the json in string form.
                     body: JSON.stringify({ username: emailVal, password: passVal })
                 })
                 data = await response.json()
