@@ -10,7 +10,7 @@ db.exec(`
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT UNIQUE,
         password TEXT
-        );
+        )
 `);
 
 // Create a table for the todos in the database
@@ -21,7 +21,7 @@ db.exec(`
         task TEXT NOT NULL,
         completed BOOLEAN DEFAULT 0,
         FOREIGN KEY (user_id) REFERENCES users(id)
-    );
+    )
 `);
 
 
