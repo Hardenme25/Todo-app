@@ -25,16 +25,24 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Connect the public folder to the backend to be able to access the files in the public folder
-const frontend = path.join(__dirname, "../public");
+const frontend = express.static(path.join(__dirname, "../public"));
 
 // Use the frontend in the backend. This is going to loaad the frontend to your root directory
-app.use(express.static(frontend));
+app.use(frontend);
 
 // Let the app translate the json from the req header
 app.use(express.json());
 
 // Use the router1 for the auth routes
 app.use("/auth", router1);
+
+// Send the index file to the frontend 
+app.get("/", (req,res) => {
+    console.log("Response to the root directory has been detected!");
+    // Here we use the pyblic directory after we have related it to the index file.
+    const index = path.join(__dirname, "public", "index.html");
+    res.status(200).sendFile(index);
+});
 
 
 // Let the app listen to the port in the env file
