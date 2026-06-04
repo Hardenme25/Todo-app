@@ -49,7 +49,7 @@ router1.post("/register", (req, res) => {
 
         // Send the token to the user
         if (token) {
-            return res.status(200).json({token});
+            return res.json({token});
         }
         
     }
@@ -100,7 +100,7 @@ router1.post("/login", (req, res) => {
 
     // Send the token to the user
     if (token) {
-        return res.status(200).json({token});   
+        return res.json({token});   
     }
 
     // Time to catch some errors
