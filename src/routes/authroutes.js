@@ -31,6 +31,9 @@ router1.post("/register", (req, res) => {
         // Now run the sql query
         const new_user = insertData.run(username,hashPassword);
 
+        // Get the user id for the inserted data
+        const userId= new_user.lastInsertRowid;
+
         // Now create a default todo
         const insertTodo = db.prepare(`
             INSERT INTO todos (user_id, task) VALUES (?,?)
@@ -39,21 +42,21 @@ router1.post("/register", (req, res) => {
         // Create a default todo for the user
         const defaultTodo = "Welcome to your todo list :) This is your first task. You can edit or delete it.";
         // Run the query
-        insertTodo.run(new_user.lastInsertRowId, defaultTodo);
-
-        // Get the user id of the user that was just created
-        const userId = new_user.lastInsertRowId;
+        insertTodo.run(userId, defaultTodo);
 
         // Create a token that you are going to  give to a user
         const token = jwt.sign({id: userId}, process.env.JWT_SECRET, {expiresIn: "24h"});
 
         // Send the token to the user
-        res.status(200).json({token});
+        if (token) {
+            return res.status(200).json({token});
+        }
+        
     }
     catch (err)
     {
         // Display the error
-        console.log(err.message);
+        console.error(err.message);
         // If the error is that the username already exists, then send a message to the user
         if (err.message.includes("UNIQUE constraint failed"))
         {
@@ -96,10 +99,14 @@ router1.post("/login", (req, res) => {
     const token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: "24h"});
 
     // Send the token to the user
-    res.status(200).json({token});
+    if (token) {
+        return res.status(200).json({token});   
+    }
+
+    // Time to catch some errors
     } catch (err) {
         // Display the error
-        console.log(err.message);
+        console.error(err.message);
         // If its another error, then send a general error messagge
         return res.status(500).json({message: "An error occurred"});
     }  
