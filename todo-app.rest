@@ -7,7 +7,7 @@ POST http://localhost:3002/auth/register
 Content-Type: application/json
 
 {
-    "username": "testuser4",
+    "username": "hard",
     "password": "testpassword"
 }
 
@@ -17,6 +17,6 @@ POST http://localhost:3002/auth/login
 Content-Type: application/json
 
 {
-    "username": "testuser3",
+    "username": "hard",
     "password": "testpassword"
 }
