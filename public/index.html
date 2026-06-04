@@ -197,7 +197,7 @@
         try {
             let data
             if (isRegistration) {
-                // register an account
+                // register an account using the fetch api
                 const response = await fetch(apiBase + 'auth/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
