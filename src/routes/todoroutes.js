@@ -11,10 +11,10 @@ const router = express.Router();
 router.get("/", (req,res) => {
     // Get the todos 
     const getTodos = db.prepare(`
-        SELECT * FROM todos WHERE  userId = ?   
+        SELECT * FROM todos WHERE  user_id = ?   
     `);
     // Get the todos where the userid matches the one in the token.
-    const todos = getTodos.all(req.userId);
+    const todos = getTodos.all(req.user_id);
 
     // Now send the todos as a response 
     res.status(200).json(todos);
@@ -30,7 +30,7 @@ router.post("/", (req,res) => {
         INSERT INTO todos (task,user_id ) (?,?) 
     `);
     // Run the sql query
-    const result = new_todo.run(task,req.userId);
+    const result = new_todo.run(task,req.user_id);
 
     // Send the todo to the user
     res.json(new_todo);
