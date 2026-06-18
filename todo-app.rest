@@ -7,7 +7,7 @@ POST http://localhost:3002/auth/register
 Content-Type: application/json
 
 {
-    "username": "Kayongo",
+    "username": "Kayon",
     "password": "testpassword"
 }
 
@@ -17,11 +17,11 @@ POST http://localhost:3002/auth/login
 Content-Type: application/json
 
 {
-    "username": "Kayongo",
+    "username": "Kayon",
     "password": "testpassword"
 }
 
 
 ### Emulate a get request for the todos (protected)
 GET http://localhost:3002/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTc4MTc4MjM0MywiZXhwIjoxNzgxODY4NzQzfQ.eJFfTZIMjW-BaP9Ked5lTkrqH6-VIJpKlMueFb5LxRk
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTc4MTc4Mzc2NSwiZXhwIjoxNzgxODcwMTY1fQ.7PDYkb5tKUaJq7EsBVAXz7ukYBQ24RbGvvp0qJLhqWs
