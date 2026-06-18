@@ -8,6 +8,10 @@ import path, {dirname} from "path";
 import { fileURLToPath } from "url";
 // Import the dotenv module to load the environment variables from the .env file
 import dotenv from "dotenv";
+// Use the authmiddleware for verification
+import authmiddleware from "./middleware/authmiddleware.js";
+// Use the router instance for the routes
+import router from "./routes/todoroutes.js";
 
 // Load the environment variables from the .env file
 dotenv.config();
@@ -35,6 +39,9 @@ app.use(express.json());
 
 // Use the router1 for the auth routes
 app.use("/auth", router1);
+
+// Use the router for the todo routes
+app.use("/todos", authmiddleware, router);
 
 // Send the index file to the frontend 
 app.get("/", (req,res) => {
