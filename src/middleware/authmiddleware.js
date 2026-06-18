@@ -15,13 +15,13 @@ function authmiddleware (req,res,next) {
     if (!token) {
         return res.status(401).json({message:"Token doesnt exist!"});
     }
-    // If the token exists prioceed to verify it
+    // If the token exists proceed to verify it
     jwt.verify(token, process.env.JWT_SECRET, (err,decode) => {
         // Check there is an err in the verification process
         if (err) {
             return res.status(402).json({message:"Error during token verification!"});
         }
-        // If there is no error get the user id 
+        // If there is no error get set the user_id of the request to be used in configuration of the todo routes.
         req.user_id = decode.id;
         // Now proceed to the next line of code 
         next();
