@@ -22,7 +22,7 @@ function authmiddleware (req,res,next) {
             return res.status(402).json({message:"Error during token verification!"});
         }
         // If there is no error get the user id 
-        req.userId = decode.id;
+        req.user_id = decode.id;
         // Now proceed to the next line of code 
         next();
     });
