@@ -7,7 +7,7 @@ POST http://localhost:3002/auth/register
 Content-Type: application/json
 
 {
-    "username": "Kayon",
+    "username": "Kayo",
     "password": "testpassword"
 }
 
@@ -17,11 +17,20 @@ POST http://localhost:3002/auth/login
 Content-Type: application/json
 
 {
-    "username": "Kayon",
+    "username": "Kayo",
     "password": "testpassword"
 }
 
 
 ### Emulate a get request for the todos (protected)
 GET http://localhost:3002/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTc4MTc4Mzc2NSwiZXhwIjoxNzgxODcwMTY1fQ.7PDYkb5tKUaJq7EsBVAXz7ukYBQ24RbGvvp0qJLhqWs
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTc4MTc5NjA1MCwiZXhwIjoxNzgxODgyNDUwfQ.Bm2tlO3CqjPrYoQacMtSm3pz-o1DMpwIOBGWoSRsdp8
+
+### Emulate a post request to create a todo (protected)
+POST http://localhost:3002/todos
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTc4MTc5NjA1MCwiZXhwIjoxNzgxODgyNDUwfQ.Bm2tlO3CqjPrYoQacMtSm3pz-o1DMpwIOBGWoSRsdp8
+Content-Type: application/json
+
+{
+    "task": "Finish the todo app"
+}
