@@ -2,8 +2,6 @@
 import express from "express";
 // import the database file
 import db from "../db.js";
-
-
 // Create a miniserver
 const router = express.Router();
 
@@ -27,9 +25,9 @@ router.post("/", (req,res) => {
 
     // Add the task to the todos table
     const new_todo = db.prepare(`
-        INSERT INTO todos (task,user_id ) (?,?) 
+        INSERT INTO todos (task,user_id ) VALUES (?,?)
     `);
-    // Run the sql query
+    // Run the sql query.
     const result = new_todo.run(task,req.user_id);
 
     // Send the todo to the user
