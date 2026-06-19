@@ -1,8 +1,8 @@
-// Import sqlite3 to create the database
+// Import sqlite3 to create the  an in-memory database for the todo app
 import { DatabaseSync} from "node:sqlite";
 
-// Create a new synchronous database
-const db = new DatabaseSync("todo.db");
+// Create a new synchronous  in memrory/ temporary database
+const db = new DatabaseSync(":memory:");
 
 // Create a table for the users in the database
 db.exec(`
