@@ -34,6 +34,22 @@ router.post("/", (req,res) => {
     res.json(new_todo);
 });
 
+// Handle a request for completing a todo
+router.put("/:id", (req,res) => {
+    // Get the id from the request params since a single user can have multiple todos.
+    const { id } = req.params;
+    // Get the user_id from the request body
+    const userid = req.user_id;
+    
+    // Update the todo to be completed
+    const update_todo = db.prepare(`
+        UPDATE todos SET completed = 1 WHERE id = ? AND user_id = ?
+    `);
+    // Run the sql query.
+    const result = update_todo.run(id,userid);
 
+    // Send the todo to the user
+    res.json({message: "Task completed!"});
+});
 // export the created router 
 export default router;
