@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// create a user model
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  // so what is happening here is that were adding a column that says ohh our user has a todo array
+  todos Todos[]
+}
+
+// create a todos model
+model Todos {
+  id        Int
+  task      String
+  user_id   Int
+  // so here we are connecting the models using referencing the id to the user_id
+  user      User  @relation(fields: [user_id], references: [id])
+}
