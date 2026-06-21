@@ -24,13 +24,13 @@ Content-Type: application/json
 
 ### Emulate a get request for the todos (protected)
 GET http://localhost:3002/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgyMDM3NTcwLCJleHAiOjE3ODIxMjM5NzB9.iOjUNwX6inxguQvrWRA-ZmC9wwr3HELfXeceLNT8tSY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgyMDUwMTgzLCJleHAiOjE3ODIxMzY1ODN9.LJaXZuuvLgeXYXmzdxGwC-A2Wr_hlHxGuPDsh8VbWtw
 
 
 
 ### Emulate a post request to create a todo (protected)
 POST http://localhost:3002/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgyMDM3NTcwLCJleHAiOjE3ODIxMjM5NzB9.iOjUNwX6inxguQvrWRA-ZmC9wwr3HELfXeceLNT8tSY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgyMDUwMTgzLCJleHAiOjE3ODIxMzY1ODN9.LJaXZuuvLgeXYXmzdxGwC-A2Wr_hlHxGuPDsh8VbWtw
 Content-Type: application/json
 
 {
@@ -41,7 +41,7 @@ Content-Type: application/json
 ### Emulate a put request to update the todo status (protected)
 
 PUT http://localhost:3002/todos/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgyMDM3NTcwLCJleHAiOjE3ODIxMjM5NzB9.iOjUNwX6inxguQvrWRA-ZmC9wwr3HELfXeceLNT8tSY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgyMDUwMTgzLCJleHAiOjE3ODIxMzY1ODN9.LJaXZuuvLgeXYXmzdxGwC-A2Wr_hlHxGuPDsh8VbWtw
 Content-Type: application/json
 
 {
@@ -51,4 +51,4 @@ Content-Type: application/json
 
 ### Emulate a delete request to delete a todo (protected)
 DELETE http://localhost:3002/todos/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgyMDM3NTcwLCJleHAiOjE3ODIxMjM5NzB9.iOjUNwX6inxguQvrWRA-ZmC9wwr3HELfXeceLNT8tSY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgyMDUwMTgzLCJleHAiOjE3ODIxMzY1ODN9.LJaXZuuvLgeXYXmzdxGwC-A2Wr_hlHxGuPDsh8VbWtw
