@@ -24,13 +24,23 @@ Content-Type: application/json
 
 ### Emulate a get request for the todos (protected)
 GET http://localhost:3002/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTc4MTc5NjA1MCwiZXhwIjoxNzgxODgyNDUwfQ.Bm2tlO3CqjPrYoQacMtSm3pz-o1DMpwIOBGWoSRsdp8
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgyMDM2Mjk4LCJleHAiOjE3ODIxMjI2OTh9.AmFQKrkC1iIMvFXkk_9ag_T8KFaM9svcm9G2373xV64
 ### Emulate a post request to create a todo (protected)
 POST http://localhost:3002/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTc4MTc5NjA1MCwiZXhwIjoxNzgxODgyNDUwfQ.Bm2tlO3CqjPrYoQacMtSm3pz-o1DMpwIOBGWoSRsdp8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgyMDM2Mjk4LCJleHAiOjE3ODIxMjI2OTh9.AmFQKrkC1iIMvFXkk_9ag_T8KFaM9svcm9G2373xV64
 Content-Type: application/json
 
 {
     "task": "Finish the todo app"
+}
+
+
+### Emulate a put request to update the todo status (protected)
+
+PUT http://localhost:3002/todos/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgyMDM2Mjk4LCJleHAiOjE3ODIxMjI2OTh9.AmFQKrkC1iIMvFXkk_9ag_T8KFaM9svcm9G2373xV64
+Content-Type: application/json
+
+{
+    "completed": 1
 }
