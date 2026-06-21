@@ -51,5 +51,23 @@ router.put("/:id", (req,res) => {
     // Send the todo to the user
     res.json({message: "Task completed!"});
 });
+
+// Handle a request for deleting a todo
+router.delete("/:id", (req,res) => {
+    // Get the id from the request params since a single user can have multiple todos.
+    const { id } = req.params;
+    // Get the user_id from the request body
+    const userid = req.user_id;
+    
+    // Delete the todo
+    const delete_todo = db.prepare(`
+        DELETE FROM todos WHERE id = ? AND user_id = ?
+    `);
+    // Run the sql query.
+    const result = delete_todo.run(id,userid);
+
+    // Send the todo to the user
+    res.json({message: "Task deleted!"});
+});
 // export the created router 
 export default router;
