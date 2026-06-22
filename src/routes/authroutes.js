@@ -8,6 +8,8 @@ import jwt from "jsonwebtoken";
 import db from "../db.js";
 // Import the dotenv module to load the environment variables from the .env file
 import dotenv from "dotenv";
+// Import the prisma client for the database connection
+import prisma from "../../prisma/prismaconfig.js";
 
 // Load the environment variables from the .env file
 dotenv.config();
@@ -16,7 +18,7 @@ dotenv.config();
 const router1 = express.Router();
 
 // Create the route for the register page
-router1.post("/register", (req, res) => {
+router1.post("/register",  async (req, res) => {
     // Get the password and username to be stored in the database from the req body
     const {username, password} =  req.body;
     // Hash the password using a synchronous bcrypt hashing.
@@ -24,28 +26,30 @@ router1.post("/register", (req, res) => {
 
     // Insert the username and the hashed password into the database
     try{
-        // Prepare the sql query
-        const insertData = db.prepare(`
-            INSERT INTO users (username,password) VALUES (?, ?)
-        `);
-        // Now run the sql query
-        const new_user = insertData.run(username,hashPassword);
-
-        // Get the user id for the inserted data
-        const userId= new_user.lastInsertRowid;
-
-        // Now create a default todo
-        const insertTodo = db.prepare(`
-            INSERT INTO todos (user_id, task) VALUES (?,?)
-        `);
+        // Insert the username and the hashed password into the database using prisma client
+        const insertData = await prisma.user.create(
+            {
+                data: {
+                    username: username,
+                    password: hashPassword
+                }
+            }
+        );
 
         // Create a default todo for the user
         const defaultTodo = "Welcome to your todo list :) This is your first task. You can edit or delete it.";
-        // Run the query
-        insertTodo.run(userId, defaultTodo);
+        // Insert the default todo into the todos table
+        const todo =  await prisma.todos.create(
+            {
+                data: {
+                    task: defaultTodo,
+                    user_id: insertData.id
+                }
+            }
+        );
 
         // Create a token that you are going to  give to a user
-        const token = jwt.sign({id: userId}, process.env.JWT_SECRET, {expiresIn: "24h"});
+        const token = jwt.sign({id: insertData.id}, process.env.JWT_SECRET, {expiresIn: "24h"});
 
         // Send the token to the user
         if (token) {
@@ -72,31 +76,31 @@ router1.post("/register", (req, res) => {
 });
 
 // Create the route for the login page
-router1.post("/login", (req, res) => {
+router1.post("/login", async (req, res) => {
     // Get the username and password from the req body
     const {username,password} = req.body;
 
     // Get the user from the database
     try {
-        const getUser = db.prepare(`
-        SELECT * FROM  users WHERE username = ?
-    `);
-    // Now get run the query
-    const user = getUser.get(username);
+        const getUser = await prisma.user.findUnique({
+            where: {
+                username: username
+            }
+        });
 
     // Now check if a user exists
-    if (!user) {
+    if (!getUser) {
         return res.status(400).json({message: "Invalid username or password"});
     }
     // If the user exists now check if the password is correct
-    const isPasswordValid = bcrypt.compareSync(password, user.password);
+    const isPasswordValid = bcrypt.compareSync(password, getUser.password);
     // If the password is not valid, then send a message to the user
     if (!isPasswordValid) {
         return res.status(400).json({message: "Invalid username or password"});
     }
 
     // If the password is valid, then create a token for the user
-    const token = jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: "24h"});
+    const token = jwt.sign({id: getUser.id}, process.env.JWT_SECRET, {expiresIn: "24h"});
 
     // Send the token to the user
     if (token) {
