@@ -9,7 +9,10 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  // This is the type of database
+  provider = "sqlite"
+  // The file where the prisma is going to create my database array using the models.
+  url = "file:./"data.db"
 }
 
 // create a user model
