@@ -4,8 +4,6 @@ import express from "express";
 import bcrypt from "bcrypt";
 // Import the jwt module to create a token.
 import jwt from "jsonwebtoken";
-// Import the database to be used in the routes
-import db from "../db.js";
 // Import the dotenv module to load the environment variables from the .env file
 import dotenv from "dotenv";
 // Import the prisma client for the database connection

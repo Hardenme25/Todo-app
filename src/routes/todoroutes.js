@@ -1,7 +1,5 @@
 // Import the express framework to create a mini server
 import express from "express";
-// import the database file
-import db from "../db.js";
 // Import the prisma client for the database connection
 import prisma from "../../prisma/prismaconfig.js";
 // Create a miniserver
