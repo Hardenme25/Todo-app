@@ -11,8 +11,6 @@ generator client {
 datasource db {
   // This is the type of database
   provider = "sqlite"
-  // The file where the prisma is going to create my database array using the models.
-  url = "file:./"data.db"
 }
 
 // create a user model
@@ -26,7 +24,7 @@ model User {
 
 // create a todos model
 model Todos {
-  id        Int
+  id        Int   @id @default(autoincrement())
   task      String
   user_id   Int
   // so here we are connecting the models using referencing the id to the user_id
