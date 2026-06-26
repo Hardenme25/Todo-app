@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 // Import the dotenv module to load the environment variables from the .env file
 import dotenv from "dotenv";
 // Import the prisma client for the database connection
-import prisma from "../../prisma/prismaconfig.js";
+import prisma from "../../prismaconfig.js";
 
 // Load the environment variables from the .env file
 dotenv.config();
