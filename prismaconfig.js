@@ -1,8 +1,8 @@
-// Importing the Prisma Client instance from the generated Prisma client package
-import { prismaClient } from "@prisma/client";
+// Import the prisma client for the database connection
+import { PrismaClient } from './src/generated/prisma/default.js';
 
-// Creating an install to be exported
-const prisma = new prismaClient();
+// Create a new instance of the PrismaClient
+const prisma = new PrismaClient();
 
-// Exporting the prisma instance to be used in other parts of the application
+// Export the prisma client to be used in other files
 export default prisma;
