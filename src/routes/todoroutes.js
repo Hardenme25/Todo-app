@@ -1,7 +1,7 @@
 // Import the express framework to create a mini server
 import express from "express";
 // Import the prisma client for the database connection
-import prisma from "../../prisma/prismaconfig.js";
+import prisma from "../../prismaconfig.js";
 // Create a miniserver
 const router = express.Router();
 
