@@ -1,8 +1,12 @@
-// Import the prisma client for the database connection
-import { PrismaClient } from './src/generated/prisma/default.js';
+import pkg from "@prisma/client";
+const { PrismaClient } = pkg;
+import * as BetterSqlite3 from "@prisma/adapter-better-sqlite3";
+import Database from "better-sqlite3";
+import "dotenv/config";
 
-// Create a new instance of the PrismaClient
-const prisma = new PrismaClient();
+const client = new Database(process.env.DATABASE_URL);
+const adapter = new BetterSqlite3.BetterSqlite3Adapter(client);
 
-// Export the prisma client to be used in other files
+const prisma = new PrismaClient({ adapter });
+
 export default prisma;
