@@ -1,10 +1,13 @@
 version: '3'
+# So this is where we configure our environments
 services:
+# This is the server container
     app:
+    # This build is used if we have already configured the environment.
       build: .
       container_name: todo-app
       environment:
-        - DATABASE_URL="prisma+postgres://localhost:51213/?api_key=eyJkYXRhYmFzZVVybCI6InBvc3RncmVzOi8vcG9zdGdyZXM6cG9zdGdyZXNAbG9jYWxob3N0OjUxMjE0L3RlbXBsYXRlMT9zc2xtb2RlPWRpc2FibGUmY29ubmVjdGlvbl9saW1pdD0xMCZjb25uZWN0X3RpbWVvdXQ9MCZtYXhfaWRsZV9jb25uZWN0aW9uX2xpZmV0aW1lPTAmcG9vbF90aW1lb3V0PTAmc29ja2V0X3RpbWVvdXQ9MCIsIm5hbWUiOiJkZWZhdWx0Iiwic2hhZG93RGF0YWJhc2VVcmwiOiJwb3N0Z3JlczovL3Bvc3RncmVzOnBvc3RncmVzQGxvY2FsaG9zdDo1MTIxNS90ZW1wbGF0ZTE_c3NsbW9kZT1kaXNhYmxlJmNvbm5lY3Rpb25fbGltaXQ9MTAmY29ubmVjdF90aW1lb3V0PTAmbWF4X2lkbGVfY29ubmVjdGlvbl9saWZldGltZT0wJnBvb2xfdGltZW91dD0wJnNvY2tldF90aW1lb3V0PTAifQ"
+        - DATABASE_URL=postgresql://postgres:postgres@db:5432/todoapp
         - JWT_SECRET=your_jwt_secret_key
         - NODE_ENV=development
         - PORT=3002
@@ -14,4 +17,20 @@ services:
       - db
       volumes:
       - .:/app  
+  # Now this is the Database container
+    db:
+    image: postgres:13-alpine
+    container_name: Postgres-database 
+    # This is for security purposes and wont be exposed to the outside world.
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: todoapp
+    ports:
+      - "3002:3002"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+# This is where we configure our volumes
+volumes:
+  postgres-data:    
 
