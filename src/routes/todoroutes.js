@@ -49,11 +49,11 @@ router.put("/:id", async (req,res) => {
     const update_todo = await prisma.todos.update(
         {
             where: {
-                id: id,
+                id: parseInt(id),
                 user_id: userid
             },
             data: {
-                completed: 1
+                completed: !!completed
             }
         }
     );
@@ -73,7 +73,7 @@ router.delete("/:id", async (req,res) => {
     const delete_todo = await prisma.todos.delete(
         {
             where: {
-                id: id,
+                id: parseInt(id),
                 user_id: userid
             }
         }
