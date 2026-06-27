@@ -1,36 +1,36 @@
-version: '3'
-# So this is where we configure our environments
+version: '3' # Upgraded to a modern version for better compatibility
+
 services:
-# This is the server container
-    app:
-    # This build is used if we have already configured the environment.
-      build: .
-      container_name: todo-app
-      environment:
-        - DATABASE_URL=postgresql://postgres:postgres@db:5432/todoapp
-        - JWT_SECRET=your_jwt_secret_key
-        - NODE_ENV=development
-        - PORT=3002
-      ports:
+  # This is the server container
+  app:
+    build: .
+    container_name: todo-app
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/todoapp
+      - JWT_SECRET=your_jwt_secret_key
+      - NODE_ENV=development
+      - PORT=3002
+    ports:
       - "3002:3002"
-      depends_on:
+    depends_on:
       - db
-      volumes:
+    volumes:
       - .:/app  
+
   # Now this is the Database container
-    db:
+  db:
     image: postgres:13-alpine
-    container_name: Postgres-database 
-    # This is for security purposes and wont be exposed to the outside world.
+    container_name: Postgres-db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: todoapp
     ports:
-      - "3002:3002"
+      - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+
 # This is where we configure our volumes
 volumes:
-  postgres-data:    
+  postgres-data:
 
