@@ -28,4 +28,5 @@ model Todos {
   user_id   Int
   completed Boolean @default(false)
   // Link the todo model to the user model
-  user     User   @relation(fields: [user_id], references: [id])  
+  user     User   @relation(fields: [user_id], references: [id]) 
+} 
