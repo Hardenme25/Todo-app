@@ -1,4 +1,7 @@
-// Import the prismaclient to be used in the code
+// Load environment variables FIRST
+import "dotenv/config";
+
+// Import the PrismaClient to be used in the code
 import { PrismaClient } from "@prisma/client";
 
 // Create a new instance of the PrismaClient
