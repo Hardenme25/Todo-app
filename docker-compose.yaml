@@ -5,6 +5,8 @@ services:
   app:
     build: .
     container_name: todo-app
+    # This is to create a time lag between the two environments
+    command: sh -c "npx prisma migrate deploy && node ./src/server.js"
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/todoapp
       - JWT_SECRET=your_jwt_secret_key
