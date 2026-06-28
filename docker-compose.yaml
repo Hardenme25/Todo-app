@@ -14,11 +14,13 @@ services:
       - "3002:3002"
     depends_on:
       - db
+    # This is called the bind mount, which allows you to mount the current directory (.) to /app in the container. This is useful for development as it allows you to see changes without rebuilding the image.  
     volumes:
       - .:/app  
 
   # Now this is the Database container
   db:
+    # We are using image because we dont need to copy thinhs or need to build anything. We can just use the official postgres image from docker hub.
     image: postgres:13-alpine
     container_name: Postgres-db
     environment:
@@ -27,10 +29,11 @@ services:
       POSTGRES_DB: todoapp
     ports:
       - "5432:5432"
+    # This is called the named volume, which allows you to persist data even if the container is removed. This is useful for databases as it allows you to keep your data safe.  
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
-# This is where we configure our volumes
+# This is where we declare the volumes for persistent storage
 volumes:
   postgres-data:
 
