@@ -31,30 +31,6 @@ A Dockerized backend application built with **Node.js**, **Express**, **PostgreS
 
 ---
 
-## Project Structure
-
-```
-project_1/
-│
-├── prisma/
-│   ├── schema.prisma
-│   └── migrations/
-│
-├── src/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── routes/
-│   ├── services/
-│   ├── utils/
-│   └── server.js
-│
-├── .env
-├── package.json
-└── README.md
-```
-
----
-
 ## Installation
 
 Clone the repository.
