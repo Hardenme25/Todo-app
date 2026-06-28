@@ -77,7 +77,7 @@ npm install
 
 ---
 
-## 🗄 Database Setup
+## Database Setup
 
 Generate the Prisma client.
 
@@ -90,16 +90,6 @@ Run database migrations.
 ```bash
 npx prisma migrate dev
 ```
-
-(Optional)
-
-Open Prisma Studio.
-
-```bash
-npx prisma studio
-```
-
----
 
 ## Running the Application
 
